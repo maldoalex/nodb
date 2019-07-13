@@ -2,9 +2,12 @@ import React from "react";
 function Header(props) {
   return (
     <header>
-      {/* <button class="header-btn">ADD MEME</button> */}
+      <img
+        style={{ width: 180 }}
+        src="https://i.imgflip.com/1n36ue.jpg"
+        alt="Code!"
+      />
       <h1>MEMESTER</h1>
-      {/* <button class="header-btn">VIEW LIBRARY</button> */}
     </header>
   );
 }
