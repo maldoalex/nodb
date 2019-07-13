@@ -6,13 +6,12 @@ class AddMemeForm extends Component {
     super();
     this.state = {
       name: "",
-      image: "",
+      url: "",
       error: ""
     };
   }
 
   handleChange = e => {
-    // this.onSubmit({ [e.target.name]: e.target.value });
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -23,12 +22,12 @@ class AddMemeForm extends Component {
     // this.props.onSubmit(this.state);
     this.setState({
       name: "",
-      image: "",
+      url: "",
       error: ""
     });
     axios.post("/api/memes/", this.state).then(res => {
       // console.log(res.data); //array of objects
-      // this.props.updateOrders(res.data);
+      // this.props.updateMemes(res.data);
       console.log(res.data);
     });
   };
@@ -43,10 +42,10 @@ class AddMemeForm extends Component {
           value={this.state.name}
         />
         <input
-          name="image"
+          name="url"
           placeholder="Image URL"
           onChange={e => this.handleChange(e)}
-          value={this.state.image}
+          value={this.state.url}
         />
         <button type="reset">Cancel</button>
         <button onClick={e => this.onSubmit(e)} type="submit">

@@ -1,24 +1,16 @@
 import React, { Component } from "react";
-import axios from "axios";
 
 class MemeGenerator extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       topText: "",
       bottomText: "",
-      randomImg: "https://i.imgflip.com/1n36ue.jpg",
-      allMemeImgs: []
+      randomImg: "https://i.imgflip.com/1n36ue.jpg"
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentDidMount() {
-    axios.get("/api/memes").then(response => {
-      // console.log(memes[0]);
-      this.setState({ allMemeImgs: response.data });
-    });
+    this.handleGenerate = this.handleGenerate.bind(this);
   }
 
   handleChange(event) {
@@ -26,17 +18,26 @@ class MemeGenerator extends Component {
     this.setState({ [name]: value });
   }
 
-  handleSubmit(event) {
+  //Component did mount
+
+  handleGenerate(event) {
     event.preventDefault();
-    const randNum = Math.floor(Math.random() * this.state.allMemeImgs.length);
-    const randMemeImg = this.state.allMemeImgs[randNum].url;
+    console.log(this.props.allMemeImgs);
+    const randNum = Math.floor(Math.random() * this.props.allMemeImgs.length);
+    const randMemeImg = this.props.allMemeImgs[randNum].url;
     this.setState({ randomImg: randMemeImg });
+  }
+
+  handleSubmit() {
+    const { topText, bottomText, randomImg } = this.state;
+    const newMeme = { topText, bottomText, randomImg };
+    this.props.addToMyMemes(newMeme);
   }
 
   render() {
     return (
       <div>
-        <form className="meme-form" onSubmit={this.handleSubmit}>
+        <form className="meme-form" onSubmit={this.handleGenerate}>
           {/* <img src={this.state.randomImg} /> */}
           <input
             type="text"
@@ -59,6 +60,7 @@ class MemeGenerator extends Component {
           <h2 className="top">{this.state.topText}</h2>
           <h2 className="bottom">{this.state.bottomText}</h2>
         </div>
+        <button onClick={this.handleSubmit}>Add to my library</button>
       </div>
     );
   }
