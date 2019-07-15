@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import "./App.css";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import MemeGenerator from "./components/MemeGenerator";
 import AddMemeForm from "./components/AddMemeForm";
 import MyMemes from "./components/MyMemes";
 import axios from "axios";
+// import MemeItem from "./components/MemeItem";
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +17,9 @@ class App extends Component {
       allMemeImgs: [],
       error: "",
       topText: "",
-      bottomText: ""
+      bottomText: "",
+      name: "",
+      url: ""
     };
     this.changeView = this.changeView.bind(this);
   }
@@ -27,18 +31,42 @@ class App extends Component {
     });
   }
 
-  addToMyMemes = newMeme => {
+  //MemeGen submit btn
+  addmyMeme = newMeme => {
+    // e.preventDefault();
+
     axios.post("/api/myMemes", newMeme).then(response => {
+      console.log(response.data);
       this.setState({
         myMemes: response.data
       });
     });
   };
 
+  //AddMemeForm submit btn
+  addToMyMemes = (e, newMeme) => {
+    e.preventDefault();
+    console.log(newMeme);
+
+    axios.post("/api/myMemes", newMeme).then(response => {
+      console.log(response.data);
+      this.setState({
+        myMemes: response.data
+      });
+    });
+  };
+
+  //change url
+  changeUrl = newUrl => {
+    this.setState({ url: newUrl });
+  };
+
   changeTopText = newTopText => {
+    console.log(newTopText);
     this.setState({ topText: newTopText });
   };
   changeBottomText = newBottomText => {
+    console.log(newBottomText);
     this.setState({ bottomText: newBottomText });
   };
 
@@ -91,7 +119,8 @@ class App extends Component {
         </nav>
         {this.state.view === "home" ? (
           <MemeGenerator
-            addToMyMemes={this.addToMyMemes}
+            // addToMyMemes={this.addToMyMemes}
+            addmyMeme={this.addmyMeme}
             allMemeImgs={this.state.allMemeImgs}
           />
         ) : null}
@@ -106,21 +135,36 @@ class App extends Component {
             deleteMyMeme={this.deleteMyMeme}
           />
         ) : null}
-        {this.state.view === "new" ? <AddMemeForm /> : null}
+        {this.state.view === "new" ? (
+          <AddMemeForm
+            myMemes={this.state.myMemes}
+            name={this.state.name}
+            topText={this.state.topText}
+            bottomText={this.state.bottomText}
+            url={this.state.url}
+            changeTopText={this.changeTopText}
+            changeBottomText={this.changeBottomText}
+            changeUrl={this.changeUrl}
+            addMemeHandleChange={this.addMemeHandleChange}
+            addToMyMemes={this.addToMyMemes}
+          />
+        ) : null}
+        {/* <MemeItem
+          myMemes={this.state.myMemes}
+          name={this.state.name}
+          url={this.state.url}
+          topText={this.state.topText}
+          bottomText={this.state.bottomText}
+          changeTopText={this.changeTopText}
+          changeBottomText={this.changeBottomText}
+          updateMyMemes={this.updateMyMemes}
+          myMemes={this.state.myMemes}
+          deleteMyMeme={this.deleteMyMeme}
+        /> */}
+        <Footer />
       </div>
     );
   }
 }
 
 export default App;
-
-// {
-//   this.state.view === "new" && (
-//     <AddMemeForm changeView={this.changeView} />
-//   )
-// }
-// {
-//   this.state.view === "myMemes" && (
-//     <MyMemes changeView={this.changeView} />
-//   )
-// }

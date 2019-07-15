@@ -1,43 +1,22 @@
-/* @import url("https://fonts.googleapis.com/css?family=Quicksand:700");
-
-header {
-  border: 1px solid red;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-items: center;
-  background-color: #015faf;
-  font-family: "Quicksand", sans-serif;
-  height: 15vh;
-}
-
-h1 {
-  font-size: 5em;
-}
-
-.header-btn {
-  border: 1px solid yellow;
-  color: black;
-  background-color: #fcea63;
-  height: 70px;
-  width: 70px;
-  border-radius: 66%;
-} */
-
 * {
   box-sizing: border-box;
 }
+
+@import url("https://fonts.googleapis.com/css?family=Audiowide&display=swap");
 
 body {
   margin: 0;
   background-color: whitesmoke;
 }
 
+/* Home Page */
+
+/* Header */
 header {
   height: 100px;
   display: flex;
   align-items: center;
-  background: #6441a5;
+  background: #004777;
 }
 
 header > img {
@@ -46,20 +25,40 @@ header > img {
 }
 
 header > h1 {
-  font-family: VT323, monospace;
+  font-family: "Audiowide", cursive, monospace;
   color: whitesmoke;
   font-size: 50px;
   margin-left: 60px;
+  border: 3px solid;
 }
 
+/* Navbar */
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: rgb(255, 202, 111);
+}
+
+nav > button {
+  font-family: "Audiowide", cursive, monospace;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  color: white;
+  background: #ff7700;
+  display: flex;
+}
+
+/* Meme Container */
 .meme {
   position: relative;
-  width: 90%;
+  width: 50%;
   margin: auto;
 }
 
 .meme > img {
   width: 100%;
+  height: 60vh;
 }
 
 .meme > h2 {
@@ -102,9 +101,130 @@ header > h1 {
 
 .meme-form > button {
   border: none;
-  font-family: VT323, monospace;
+  font-family: "Audiowide", cursive, monospace;
   font-size: 25px;
   letter-spacing: 1.5px;
   color: white;
-  background: #6441a5;
+  background: #ff7700;
+}
+
+.gen-add-lib {
+  border: 1px solid #a30000;
+  font-family: "Audiowide", cursive, monospace;
+  font-size: 18px;
+  letter-spacing: 1.5px;
+  color: white;
+  background: #ff7700;
+  position: absolute;
+  width: 20%;
+  top: 50%;
+}
+
+footer {
+  height: 50px;
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  align-items: center;
+  background: #004777;
+}
+
+footer > img {
+  height: 100%;
+  margin-left: 10%;
+}
+
+footer > h1 {
+  font-family: "Audiowide", cursive, monospace;
+  color: whitesmoke;
+  font-size: 20px;
+  margin-left: 60px;
+}
+
+/* Add Meme Form */
+.add-meme-form {
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-meme-form > input {
+  width: 45%;
+  height: 40px;
+}
+
+.add-meme {
+  position: relative;
+  width: 60%;
+  margin: auto;
+}
+
+.add-meme > img {
+  width: 100%;
+  height: 60vh;
+}
+
+.add-meme-form-btn {
+  border: none;
+  font-family: "Audiowide", cursive, monospace;
+  font-size: 25px;
+  letter-spacing: 1.5px;
+  color: white;
+  background: #ff7700;
+  position: absolute;
+  bottom: 15%;
+  left: 30%;
+}
+
+.add-meme-form-btn-cancel {
+  border: none;
+  font-family: "Audiowide", cursive, monospace;
+  font-size: 25px;
+  letter-spacing: 1.5px;
+  color: white;
+  background: #ff7700;
+  position: absolute;
+  bottom: 15%;
+  right: 30%;
+}
+
+/* My Memes Library */
+
+.my-memes-meme {
+  /* width: 90%;
+  margin: 20px auto;
+  display: flex;
+  justify-content: space-between; */
+}
+
+.my-memes-input {
+  width: 45%;
+  height: 40px;
+}
+
+.my-memes-btn-edit {
+  border: none;
+  font-family: "Audiowide", cursive, monospace;
+  font-size: 25px;
+  letter-spacing: 1.5px;
+  color: white;
+  background: #ff7700;
+  position: absolute;
+  bottom: 9%;
+  left: 15%;
+}
+
+.my-memes-btn-delete {
+  border: none;
+  font-family: "Audiowide", cursive, monospace;
+  font-size: 25px;
+  letter-spacing: 1.5px;
+  color: white;
+  background: #ff7700;
+  position: absolute;
+  bottom: 9%;
+  right: 15%;
 }

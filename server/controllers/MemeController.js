@@ -19,13 +19,26 @@ const getmyMemes = (req, res) => {
   res.json(myMemes);
 };
 
+//MemeGenerator
 const addmyMeme = (req, res) => {
+  console.log(req.body);
   const ID = myMemes.length + 1;
-  const { topText, bottomText, randomImg } = req.body;
-  if (!topText || !bottomText || !randomImg) {
+  const { topText, bottomText, url } = req.body;
+  if (!topText || !bottomText || !url) {
     return res.status(417).json("Name and URL are required");
   }
-  myMemes.push({ topText, bottomText, randomImg, ID });
+  myMemes.push({ topText, bottomText, url, ID });
+  res.json(myMemes);
+};
+
+//AddMemeForm
+const addToMyMemes = (req, res) => {
+  const ID = myMemes.length + 1;
+  const { topText, bottomText, url } = req.body;
+  if (!topText || !bottomText || !url) {
+    return res.status(417).json("Name and URL are required");
+  }
+  myMemes.push({ topText, bottomText, url, ID });
   res.json(myMemes);
 };
 
@@ -56,5 +69,6 @@ module.exports = {
   getmyMemes,
   addmyMeme,
   updateMyMemes,
-  deleteMyMeme
+  deleteMyMeme,
+  addToMyMemes
 };

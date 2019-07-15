@@ -1,70 +1,48 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React from "react";
 
-class AddMemeForm extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: "",
-      url: "",
-      error: ""
-    };
-  }
+//change to stateful comp topt, bott, url => add button to send to mymemes
 
-  handleChange = e => {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  };
-
-  onSubmit = e => {
-    e.preventDefault();
-    // this.props.onSubmit(this.state);
-    this.setState({
-      name: "",
-      url: "",
-      error: ""
-    });
-    axios.post("/api/memes/", this.state).then(res => {
-      // console.log(res.data); //array of objects
-      // this.props.updateMemes(res.data);
-      console.log(res.data);
-    });
-  };
-
-  render() {
-    return (
-      <form>
+function AddMemeForm(props) {
+  return (
+    <div>
+      <form className="add-meme-form">
         <input
-          name="name"
-          placeholder="meme description"
-          onChange={e => this.handleChange(e)}
-          value={this.state.name}
-        />
-        <input
-          name="url"
           placeholder="Image URL"
-          onChange={e => this.handleChange(e)}
-          value={this.state.url}
+          onChange={event => props.changeUrl(event.target.value)}
         />
-        <button type="reset">Cancel</button>
-        <button onClick={e => this.onSubmit(e)} type="submit">
-          Submit
-        </button>
-        {this.state.error ? <p>{this.state.error}</p> : null}
+        <input
+          placeholder="text on top"
+          onChange={event => props.changeTopText(event.target.value)}
+        />
+        <input
+          placeholder="text on bottom"
+          onChange={event => props.changeBottomText(event.target.value)}
+        />
       </form>
-    );
-  }
+      <div className="add-meme">
+        <img src={props.randomImg} alt="random meme" />
+        <h2 className="top">{props.topText}</h2>
+        <h2 className="bottom">{props.bottomText}</h2>
+      </div>
+
+      <button className="add-meme-form-btn-cancel" type="reset">
+        Cancel
+      </button>
+      <button
+        className="add-meme-form-btn"
+        onClick={e =>
+          props.addToMyMemes(e, {
+            topText: props.topText,
+            bottomText: props.bottomText,
+            url: props.url
+            // ID: props.ID
+          })
+        }
+      >
+        Submit
+      </button>
+    </div>
+  );
 }
 
 export default AddMemeForm;
-
-// onClick={this.handleClick};
-
-// handleClick = (e) => {
-//  e.preventDefault();
-//  axios.post("/api/orderList/", this.state).then(res => {
-//   // console.log(res.data); //array of objects
-//   // this.props.updateOrders(res.data);
-//  })
-// };

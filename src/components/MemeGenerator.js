@@ -6,7 +6,7 @@ class MemeGenerator extends Component {
     this.state = {
       topText: "",
       bottomText: "",
-      randomImg: "https://i.imgflip.com/1n36ue.jpg"
+      randomImg: "https://i.imgflip.com/gft6.jpg"
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,7 +22,6 @@ class MemeGenerator extends Component {
 
   handleGenerate(event) {
     event.preventDefault();
-    console.log(this.props.allMemeImgs);
     const randNum = Math.floor(Math.random() * this.props.allMemeImgs.length);
     const randMemeImg = this.props.allMemeImgs[randNum].url;
     this.setState({ randomImg: randMemeImg });
@@ -30,8 +29,8 @@ class MemeGenerator extends Component {
 
   handleSubmit() {
     const { topText, bottomText, randomImg } = this.state;
-    const newMeme = { topText, bottomText, randomImg };
-    this.props.addToMyMemes(newMeme);
+    const newMeme = { topText, bottomText, url: randomImg };
+    this.props.addmyMeme(newMeme);
   }
 
   render() {
@@ -60,10 +59,31 @@ class MemeGenerator extends Component {
           <h2 className="top">{this.state.topText}</h2>
           <h2 className="bottom">{this.state.bottomText}</h2>
         </div>
-        <button onClick={this.handleSubmit}>Add to my library</button>
+        <button className="gen-add-lib" onClick={this.handleSubmit}>
+          Add to my library
+        </button>
       </div>
     );
   }
 }
 
 export default MemeGenerator;
+
+// handleSubmit() {
+//   const { topText, bottomText, randomImg } = this.state;
+//   const newMeme = { topText, bottomText, url: randomImg };
+//   this.props.addmyMeme(newMeme);
+// }
+
+// <button
+//   onClick={e =>
+//     props.addmyMeme(e, {
+//       topText: props.topText,
+//       bottomText: props.bottomText,
+//       url: props.url,
+//       ID: props.ID
+//     })
+//   }
+// >
+//   Submit
+//         </button>
