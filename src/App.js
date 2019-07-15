@@ -6,7 +6,7 @@ import MemeGenerator from "./components/MemeGenerator";
 import AddMemeForm from "./components/AddMemeForm";
 import MyMemes from "./components/MyMemes";
 import axios from "axios";
-// import MemeItem from "./components/MemeItem";
+import MemeItem from "./components/MemeItem";
 
 class App extends Component {
   constructor(props) {
@@ -74,9 +74,10 @@ class App extends Component {
     axios
       //params = ${ID}
       .put(`/api/myMemes/${ID}`, { topText, bottomText })
-      .then(response =>
-        this.setState({ myMemes: response.data, topText: "", bottomText: "" })
-      );
+      .then(response => {
+        console.log(response.data);
+        this.setState({ myMemes: response.data, topText: "", bottomText: "" });
+      });
   };
 
   deleteMyMeme = ID => {

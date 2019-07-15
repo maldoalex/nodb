@@ -45,6 +45,7 @@ const addToMyMemes = (req, res) => {
 const updateMyMemes = (req, res) => {
   const { topText, bottomText } = req.body;
   const { ID } = req.params;
+  console.log(topText);
   const memeIndex = myMemes.findIndex(meme => {
     return meme.ID == ID;
   });

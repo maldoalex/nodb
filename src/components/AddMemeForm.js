@@ -20,7 +20,7 @@ function AddMemeForm(props) {
         />
       </form>
       <div className="add-meme">
-        <img src={props.randomImg} alt="random meme" />
+        {props.url && <img src={props.url} alt="random meme" />}
         <h2 className="top">{props.topText}</h2>
         <h2 className="bottom">{props.bottomText}</h2>
       </div>
@@ -29,7 +29,7 @@ function AddMemeForm(props) {
         Cancel
       </button>
       <button
-        className="add-meme-form-btn"
+        className="add-meme-form-btn-submit"
         onClick={e =>
           props.addToMyMemes(e, {
             topText: props.topText,

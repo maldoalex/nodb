@@ -68,22 +68,3 @@ class MemeGenerator extends Component {
 }
 
 export default MemeGenerator;
-
-// handleSubmit() {
-//   const { topText, bottomText, randomImg } = this.state;
-//   const newMeme = { topText, bottomText, url: randomImg };
-//   this.props.addmyMeme(newMeme);
-// }
-
-// <button
-//   onClick={e =>
-//     props.addmyMeme(e, {
-//       topText: props.topText,
-//       bottomText: props.bottomText,
-//       url: props.url,
-//       ID: props.ID
-//     })
-//   }
-// >
-//   Submit
-//         </button>
