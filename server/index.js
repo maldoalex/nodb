@@ -26,5 +26,8 @@ app.delete("/api/myMemes/:ID", MemeController.deleteMyMeme);
 //Form
 app.post("/api/myMemes", MemeController.addToMyMemes);
 
+//Search on Home page using query
+app.get("/api/filteredMemes", MemeController.getFilteredMemes);
+
 const PORT = 3009;
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));

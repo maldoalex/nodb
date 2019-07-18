@@ -8,6 +8,7 @@ body {
   margin: 0;
   background-color: whitesmoke;
   background-image: url("https://www.leonardodavinci.net/images/universal-genius.jpg");
+  background-size: 100% 100%;
 }
 
 /* Home Page */

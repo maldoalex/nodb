@@ -7,6 +7,7 @@ import AddMemeForm from "./components/AddMemeForm";
 import MyMemes from "./components/MyMemes";
 import axios from "axios";
 import MemeItem from "./components/MemeItem";
+import SearchButton from "./components/SearchButton";
 
 class App extends Component {
   constructor(props) {
@@ -150,18 +151,8 @@ class App extends Component {
             addToMyMemes={this.addToMyMemes}
           />
         ) : null}
-        {/* <MemeItem
-          myMemes={this.state.myMemes}
-          name={this.state.name}
-          url={this.state.url}
-          topText={this.state.topText}
-          bottomText={this.state.bottomText}
-          changeTopText={this.changeTopText}
-          changeBottomText={this.changeBottomText}
-          updateMyMemes={this.updateMyMemes}
-          myMemes={this.state.myMemes}
-          deleteMyMeme={this.deleteMyMeme}
-        /> */}
+
+        <SearchButton />
         <Footer />
       </div>
     );

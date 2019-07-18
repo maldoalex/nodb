@@ -64,6 +64,19 @@ const deleteMyMeme = (req, res) => {
   res.json(myMemes);
 };
 
+const getFilteredMemes = (req, res) => {
+  console.log("this is a query", req.query);
+  // {
+  // rating: 8,
+  // type: 'SCIENCE'
+  // }
+  let memeList = [...memes];
+
+  const filteredMemes = memeList.filter(meme => meme.type == req.query.type);
+
+  res.status(200).json(filteredMemes);
+};
+
 module.exports = {
   getMemes,
   addMeme,
@@ -71,5 +84,6 @@ module.exports = {
   addmyMeme,
   updateMyMemes,
   deleteMyMeme,
-  addToMyMemes
+  addToMyMemes,
+  getFilteredMemes
 };
